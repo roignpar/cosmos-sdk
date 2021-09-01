@@ -37,7 +37,7 @@ func TestFormatCoin(t *testing.T) {
 			false,
 		},
 		{
-			"convert 23000000mregen to 1000regen",
+			"convert 23000000mregen to 23000regen",
 			valuerenderer.NewDefaultValueRendererWithDenom("regen"),
 			types.NewCoin("mregen", types.NewInt(int64(23000000))),
 			"23,000regen",
@@ -47,10 +47,23 @@ func TestFormatCoin(t *testing.T) {
 			"convert 23000000mregen to 23000000000uregen",
 			valuerenderer.NewDefaultValueRendererWithDenom("uregen"),
 			types.NewCoin("mregen", types.NewInt(int64(23000000))),
-			"23000000000uregen",
+			"23,000,000,000uregen",
 			false,
 		},
-
+		{
+			"convert 23000000regen to 23000000000mregen",
+			valuerenderer.NewDefaultValueRendererWithDenom("mregen"),
+			types.NewCoin("regen", types.NewInt(int64(23000000))),
+			"23,000,000,000mregen",
+			false,
+		},
+		{
+			"convert 23000regen to 23000regen",
+			valuerenderer.NewDefaultValueRendererWithDenom("regen"),
+			types.NewCoin("regen", types.NewInt(int64(23000))),
+			"23,000regen",
+			false,
+		},
 	}
 
 	for _, tc := range tt {
